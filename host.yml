@@ -1,0 +1,32 @@
+http:
+
+  routers:
+    host:
+      entryPoints:
+      - websecure
+      service: service-host  
+      middlewares:
+      - "admin-stripprefix"
+      rule: PathPrefix(`/`)
+      tls:
+        certResolver: myresolver
+        domains:
+        - main: "54.210.139.77.sslip.io"
+
+  middlewares:
+    admin-stripprefix:
+      stripPrefix:
+        prefixes:
+        - "/"
+
+  services:
+    service-host:
+      loadBalancer:
+        healthCheck:
+          path: /health.html
+          interval: "5s"
+          timeout: "3s"
+        servers:
+        - url: http://54.209.169.226
+        - url: http://18.205.106.67
+
