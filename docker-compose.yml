@@ -8,6 +8,8 @@ services:
       - 80:80
       - 8080:8080
       - 443:443
+      - 1532:1532
+      - 53:53/udp
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./traefik.yml:/traefik.yml:ro

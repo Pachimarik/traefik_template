@@ -1,0 +1,13 @@
+tcp:
+  routers:
+    to-database:
+      entryPoints:
+        - "mysql"
+      rule: "HostSNI(`*`)"
+      service: database
+
+  services:
+    database:
+      loadBalancer:
+        servers:
+          - address: "52.70.100.141:3306"

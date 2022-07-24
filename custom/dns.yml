@@ -1,0 +1,11 @@
+udp:
+  routers:
+    udp_router:
+      entryPoints:
+        - "dns"
+      service: server
+  services:
+    server:
+      loadBalancer:
+        servers:
+          - address: "44.206.246.199:53"
